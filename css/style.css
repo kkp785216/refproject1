@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+*::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 50%;
+    background-color: var(--black2);
+}
+:root{
+    --blue: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.container{
+    position: relative;
+    width: 100%;
+}
+#navigation{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    left: 0px;
+    background: var(--blue);
+    border-left: 10px solid var(--blue);
+    transition: 0.5s;
+    overflow: hidden scroll;
+    z-index: 2;
+}
+#navigation.active{
+    width: 70px;
+}
+#navigation::-webkit-scrollbar {
+    display: none;
+}
+#navigation ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+#navigation ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+#navigation ul li:nth-child(1){
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+#navigation ul > li:hover,
+#navigation ul > li.hovered{
+    background-color: var(--white);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+#navigation ul li a{
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    color: var(--white);
+    height: 60px;
+    white-space: nowrap;
+}
+#navigation ul li:hover a,
+#navigation ul li.hovered a{
+    color: var(--blue);
+}
+#navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    text-align: center;
+}
+#navigation ul li a .icon ion-icon{
+    font-size: 1.7rem;
+}
+#navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    text-align: start;
+}
+
+/* Curve Outside */
+#navigation ul li:hover a::before,
+#navigation ul li.hovered a::before{
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    top: -50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+}
+#navigation ul li:hover a::after,
+#navigation ul li.hovered a::after{
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    bottom: -50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+/* Header Topbar */
+.topbar{
+    position: fixed;
+    left: 260px;
+    transition: .5s;
+    right: 0px;
+    z-index: 10;
+    background: var(--white);
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+.topbar.active{
+    left: 80px;
+}
+.topbar .topbarBox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0px 20px;
+}
+
+/* Main Section */
+#main{
+    position: absolute;
+    width: calc(100% - 260px);
+    left: 260px;
+    min-height: 100vh;
+    background: var(--white);
+    transition: .5s;
+    margin-top: 80px;
+}
+#main.active{
+    width: calc(100% - 80px);
+    left: 80px;
+}
+.toggle{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.toggle.tg-btn{
+    position: relative;
+    left: -14px;
+}
+.search{
+    position: relative;
+    left: -14px;
+    width: 50px;
+    flex-grow: 4;
+    display: flex;
+    max-width: 400px;
+    margin: 0 10px;
+}
+.search input{
+    width: 100%;
+    height: 35px;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    max-width: 400px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid var(--black2);
+}
+.search ion-icon{
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    font-size: 1.2rem;
+}
+.user{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.user img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card Box */
+#cardbox{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    position: relative;
+    padding: 20px;
+    overflow-x: scroll;
+}
+#cardbox::-webkit-scrollbar {
+    display: none;
+}
+#cardbox .card{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+    transition: 150ms;
+}
+#cardbox .card .cardNumbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: var(--blue);
+}
+#cardbox .card .cardName{
+    position: relative;
+    color: var(--black2);
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+#cardbox .card .iconBox{
+    position: relative;
+    font-size: 3.5em;
+    color: var(--black2);
+}
+#cardbox .card:hover{
+    background: var(--blue);
+}
+#cardbox .card:hover  .cardNumbers,
+#cardbox .card:hover .cardName,
+#cardbox .card:hover .iconBox{
+    color: var(--white);
+}
+
+/* Details */
+.details{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    position: relative;
+    padding: 20px;
+    overflow-x: scroll;
+}
+.details .recentOrders{
+    position: relative;
+    min-height: 500px;
+    max-height: 1000px;
+    min-width: 350px;
+    overflow-y: scroll;
+    background-color: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+}
+.recentOrders::-webkit-scrollbar {
+    display: none;
+}
+.recentOrders {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+.cardHeader h2{
+    font-weight: 600;
+    color: var(--blue);
+}
+.btn{
+    position: relative;
+    padding: 5px 10px;
+    background: var(--blue);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 6px;
+}
+.orderRow{
+}
+.orderRow .orderColumn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.orderRow .orderColumn .orderAlign{
+    display: flex;
+    justify-content: space-between;
+}
+.orderRow .orderColumn:hover{
+    background: var(--blue);
+    color: var(--white);
+}
+.orderRow .orderColumn:first-child{
+    pointer-events: none;
+}
+.orderRow .orderColumn:first-child,
+.orderRow .orderColumn:last-child
+{
+    border: none;
+}
+.status{
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.status.delivered{
+    background: #8de02c;
+    color: var(--white);
+}
+.status.pending{
+    background: #f9ca3f;
+    color: var(--white);
+}
+.status.return{
+    background: #f00;
+    color: var(--white);
+}
+.status.inprogress{
+    background: #1795ce;
+    color: var(--white);
+}
+
+/* New Customers */
+.recentCustomer{
+    position: relative;
+    background: var(--white);
+    min-height: 500px;
+    max-height: 1000px;
+    overflow-y: scroll;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+    border-radius: 20px;
+}
+.recentCustomer::-webkit-scrollbar {
+    display: none;
+}
+.recentCustomer {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.recentCustomer .recentCol{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+.recentCustomer .recentCol img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 13px;
+}
+.recentCustomer .recentCol h4{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+.recentCustomer .recentCol h4 span{
+    font-size: 14px;
+    color: var(--black2);
+}
+.recentCustomer .recentCol:hover h4 span,
+.recentCustomer .recentCol:hover{
+    background: var(--blue);
+    color: var(--white);
+}
+
+/* now make it Responsive Design */
+@media (max-width: 989px){
+    #navigation{
+        width: 70px;
+    }
+    #navigation.active{
+        width: 250px;
+    }
+    #main{
+        width: calc(100% - 80px);
+        left: 80px;
+    }
+    #main.active{
+        width: calc(100% - 260px);
+        left: 260px;
+    }
+    .topbar{
+        left: 80px;
+    }
+    .topbar.active{
+        left: 260px;
+    }
+}
+
+@media (max-width: 849px){
+    /* Navigation */
+    #navigation{
+        left: -260px;
+    }
+    #navigation.active{
+        left: 0px;
+    }
+    #main{
+        width: calc(100% - 10px);
+        left: 0px;
+    }
+    #main.active{
+        width: calc(100% - 10px);
+        left: 260px;
+    }
+    .topbar{
+        left: 0px;
+    }
+    .topbar.active{
+        left: 0px;
+    }
+    #navigation ul li:nth-child(1) {
+        margin-bottom: 40px;
+        pointer-events: none;
+        margin-top: 73px;
+    }
+    /* Others */
+    #cardbox {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px){
+    .details {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 539px){
+    #cardbox {
+        grid-template-columns: 1fr;
+    }
+}
